@@ -13,6 +13,10 @@ export default defineNuxtConfig({
     },
   },
   modules: [
-    '@nuxtjs/axios'
-  ]
+  ],
+  runtimeConfig: {
+    public: {
+      baseUrl: process.env.BASE_URL
+    }
+  }
 });

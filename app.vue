@@ -18,13 +18,14 @@ onMounted(() => {
     getData().then((respData) => {
         data.value = respData.value.data
     }).then(() => {
+        const minValue = Math.min(...Object.values(data.value));
         const ctx = document.getElementById('myChart');
         const myChart = new Chart(ctx, {
             type: 'line',
             data: {
                 labels: Object.keys(data.value).map((key) => key.substring(5)),
                 datasets: [{
-                    label: 'Daily Values',
+                    label: 'CNY to JPY',
                     data: Object.values(data.value),
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)'
@@ -38,7 +39,8 @@ onMounted(() => {
             options: {
                 scales: {
                     y: {
-                        beginAtZero: true
+                        beginAtZero: false,
+                        min: minValue,  // Set the minimum value here
                     }
                 }
             }

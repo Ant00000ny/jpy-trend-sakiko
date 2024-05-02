@@ -37,6 +37,8 @@ onMounted(() => {
                 }]
             },
             options: {
+                responsive: true,
+                maintainAspectRatio: false,
                 scales: {
                     y: {
                         beginAtZero: false,
@@ -51,13 +53,13 @@ onMounted(() => {
 
 <template>
     <div class="w-screen h-screen flex flex-col gap-1.5 justify-center items-center">
-        <div class="text-center text-8xl m-7">今天日元跌了吗？</div>
-        <div class="w-[600px] h-[600px]">
+        <div class="text-center text-4xl">今天日元跌了吗？</div>
+        <div class="w-1/2 max-w-[600px] max-h-[600px]">
             <img v-if="!isUp" src="/sakiko-down.jpeg" alt="">
             <img v-if="isUp" src="/sakiko-up.jpeg" alt="">
         </div>
-        <div>
-            <canvas id="myChart" width="800" height="200"></canvas>
+        <div class="w-11/12 max-w-[800px] max-h-[200px]">
+            <canvas id="myChart"></canvas>
         </div>
     </div>
 </template>

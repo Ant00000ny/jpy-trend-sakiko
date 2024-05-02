@@ -10,8 +10,8 @@ async function getData() {
 
 let data = ref(null)
 let isUp = computed(() => {
-    if (data == null || data.value == null) return false
-    return Object.values(data.value)[data.value.length - 1] > Object.values(data.value)[data.value.length - 2]
+    if (data == null || data.value == null) return null
+    return Object.values(data.value)[Object.values(data.value).length - 1] > Object.values(data.value)[Object.values(data.value).length - 2]
 })
 
 onMounted(() => {
@@ -55,8 +55,8 @@ onMounted(() => {
     <div class="w-screen h-screen flex flex-col gap-1.5 justify-center items-center">
         <div class="text-center text-4xl">今天日元跌了吗？</div>
         <div class="w-1/2 max-w-[600px] max-h-[600px]">
-            <img v-if="!isUp" src="/sakiko-down.jpeg" alt="">
-            <img v-if="isUp" src="/sakiko-up.jpeg" alt="">
+            <img v-if="isUp != null && !isUp" src="/sakiko-down.jpeg" alt="">
+            <img v-if="isUp != null && isUp" src="/sakiko-up.jpeg" alt="">
         </div>
         <div class="w-11/12 max-w-[800px] max-h-[200px]">
             <canvas id="myChart"></canvas>

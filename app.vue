@@ -16,10 +16,41 @@ useHead({
 })
 
 let config = useRuntimeConfig();
+let app = useNuxtApp()
 
 async function getData() {
     let response = await useFetch(config.public.baseUrl + '/api/rate')
     return response.data
+}
+
+function fireConfetti() {
+    let confetti = app.$confetti
+
+    var end = Date.now() + (4 * 1000);
+
+// go Buckeyes!
+    var colors = ['#365162', '#ffffff'];
+
+    (function frame() {
+        confetti({
+            particleCount: 2,
+            angle: 60,
+            spread: 55,
+            origin: { x: 0 },
+            colors: colors
+        });
+        confetti({
+            particleCount: 2,
+            angle: 120,
+            spread: 55,
+            origin: { x: 1 },
+            colors: colors
+        });
+
+        if (Date.now() < end) {
+            requestAnimationFrame(frame);
+        }
+    }());
 }
 
 let data = ref(null)
@@ -32,6 +63,10 @@ onMounted(() => {
     getData().then((respData) => {
         data.value = respData.value.data
     }).then(() => {
+        if (isUp) {
+            fireConfetti()
+        }
+
         const minValue = Math.min(...Object.values(data.value));
         const ctx = document.getElementById('myChart');
         const myChart = new Chart(ctx, {

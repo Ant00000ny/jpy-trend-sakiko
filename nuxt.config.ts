@@ -18,5 +18,8 @@ export default defineNuxtConfig({
     public: {
       baseUrl: process.env.BASE_URL
     }
-  }
+  },
+  plugins: [
+    '~/plugins/confetti.js'  // Ensure the path is correct
+  ],
 });

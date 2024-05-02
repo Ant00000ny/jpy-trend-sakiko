@@ -1,6 +1,20 @@
 <script setup>
 import {Chart} from "chart.js/auto";
 
+useHead({
+    title: '今天日元跌了吗？',
+    meta: [
+        {
+            name: 'description',
+            content: '今天日元跌了吗？'
+        },
+        {
+            name: 'keywords',
+            content: '今天日元跌了吗？'
+        }
+    ]
+})
+
 let config = useRuntimeConfig();
 
 async function getData() {

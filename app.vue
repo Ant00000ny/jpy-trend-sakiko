@@ -56,14 +56,14 @@ function fireConfetti() {
 let data = ref(null)
 let isUp = computed(() => {
     if (data == null || data.value == null) return null
-    return Object.values(data.value)[Object.values(data.value).length - 1] > Object.values(data.value)[Object.values(data.value).length - 2]
+    return Object.values(data.value)[Object.values(data.value).length - 1] < Object.values(data.value)[Object.values(data.value).length - 2]
 })
 
 onMounted(() => {
     getData().then((respData) => {
         data.value = respData.value.data
     }).then(() => {
-        if (isUp) {
+        if (!isUp) {
             fireConfetti()
         }
 

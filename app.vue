@@ -63,7 +63,7 @@ onMounted(() => {
     getData().then((respData) => {
         data.value = respData.value.data
     }).then(() => {
-        if (!isUp) {
+        if (isUp) {
             fireConfetti()
         }
 
